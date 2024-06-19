@@ -1,72 +1,23 @@
-// function walk(graph:WeightedAdjacencyList,
-//     curr:number,
-//     needle:number,
-//     seen:boolean[],
-//     path:number[],
-// ) : boolean{
-    
-//     if(seen[curr]){
-//         return false;
-//     }
-
-//     seen[curr] = true;
-    
-//     path.push(curr);
-//     if(curr === needle){
-//         return true;
-//     }
-
-//     const list = graph[curr];
-//     for(let i=0;i<list.length;++i    ){
-
-//         const edge = list[i];
-//         if(walk(graph,edge.to,needle,seen,path)){
-//             return true;
-//         }
-//     }
-
-//     path.pop();
-
-//     return false;
-// }
-
-// export default function dfs(
-//     graph: WeightedAdjacencyList, 
-//     source: number,
-//     needle: number): number[] | null {
-
-//     const seen = new Array(graph.length).fill(false);
-//     const path : number[] = [];
-
-//     walk(graph,source,needle,seen,path);
-
-//     if(path.length ===0){
-//         return null;
-//     }
-
-//     return path;
-// }
-
 function walk(graph:WeightedAdjacencyList,
     curr:number,
     needle:number,
     seen:boolean[],
     path:number[],
-): boolean{
-
+) : boolean{
+    
     if(seen[curr]){
         return false;
     }
 
-    path.push(curr);
+    seen[curr] = true;
     
+    path.push(curr);
     if(curr === needle){
         return true;
     }
-    
-    seen[curr] = true;
+
     const list = graph[curr];
-    for(let i=0;i<list.length;++i){
+    for(let i=0;i<list.length;++i    ){
 
         const edge = list[i];
         if(walk(graph,edge.to,needle,seen,path)){
@@ -77,15 +28,15 @@ function walk(graph:WeightedAdjacencyList,
     path.pop();
 
     return false;
-
 }
+
 export default function dfs(
     graph: WeightedAdjacencyList, 
     source: number,
     needle: number): number[] | null {
 
     const seen = new Array(graph.length).fill(false);
-    const path:number[] = [];
+    const path : number[] = [];
 
     walk(graph,source,needle,seen,path);
 
@@ -93,6 +44,5 @@ export default function dfs(
         return null;
     }
 
-
     return path;
-    }
+}
